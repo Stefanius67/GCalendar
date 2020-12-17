@@ -14,21 +14,21 @@ page.
 
 Following Data for the event to create is supported:
 - Subject
-	- `setSubject()`
+	- `setSubject()`  
 - Start Date/Time
-	- `setStart()`
+	- `setStart()`  
 - End Date/Time or Duration(if not set, default duration of 30 min is used)
-	-> `setEnd()` or `setDuration()`
+	- `setEnd()` or `setDuration()`  
 - Timezone (if not set, system settings used)
-	- `setTimezone()`
+	- `setTimezone()`  
 - All day Event
-	- `setTimezone()`
+	- `setTimezone()`  
 - Detailed Description (optional)
-	- `setDetails()`
+	- `setDetails()`  
 - Location
-	- `setLocation()`
+	- `setLocation()`  
 - Additional Guest(s)
-	- `addGuest()`
+	- `addGuest()`  
 
 ## Usage
 1. Create an instance of the GCalAddEventLink class
