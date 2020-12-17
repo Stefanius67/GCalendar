@@ -188,9 +188,11 @@ class GCalAddEventLink
      */
     public function setTransparency(string $strTransparency) : void
     {
-        $aVaildTrp = [self::AVAILABLE, self::BUSY, BLOCKING];
-        if (in_array($strTransparency, $aVaildTrp)) {
+        $aValidTrp = [self::AVAILABLE, self::BUSY, self::BLOCKING];
+        if (in_array($strTransparency, $aValidTrp)) {
             $this->strTransparency = $strTransparency;
+        } else {
+            $this->logger->warning('Invalid Transparency at GCalendar::setTransparency()!', ['strTransparency' => $strTransparency]);
         }
     }
     
@@ -231,19 +233,19 @@ class GCalAddEventLink
         } else if (is_numeric($datetime)) {
             // unix timestamp
             $dt = new \DateTime();
-            $dt->setTimestamp($datetime);
+            $dt->setTimestamp(intval($datetime));
         } else {
             // formated string
             if ($strFormat != '') {
                 // parse according given format
-                $dt = \DateTime::createFromFormat($strFormat, $datetime);
+                $dt = \DateTime::createFromFormat($strFormat, (string) $datetime);
                 if ($dt === false) {
                     $dt = null;
                     $this->logger->warning('Invalid Date parameter GCalendar::setStart()/setEnd()', ['datetime' => $datetime]);
                 }
             } else {
                 // assuming any English textual datetime
-                $timestamp = strtotime($datetime);
+                $timestamp = strtotime((string) $datetime);
                 if ($timestamp !== false) {
                     $dt = new \DateTime();
                     $dt->setTimestamp($timestamp);
@@ -276,12 +278,16 @@ class GCalAddEventLink
      */
     private function getDatesParam() : string
     {
-        $strFormat = 'Ymd\THis';
-        if ($this->bAllday) {
-            $this->dtEnd->add(new \DateInterval('P1D'));
-            $strFormat = 'Ymd';
+        $strDates = '';
+        if ($this->dtStart !== null && $this->dtEnd !== null) {
+            $strFormat = 'Ymd\THis';
+            if ($this->bAllday) {
+                $this->dtEnd->add(new \DateInterval('P1D'));
+                $strFormat = 'Ymd';
+            }
+            $strDates = '&dates=' . $this->dtStart->format($strFormat) . '/' . $this->dtEnd->format($strFormat);
         }
-        return '&dates=' . $this->dtStart->format($strFormat) . '/' . $this->dtEnd->format($strFormat);
+        return $strDates;
     }
     
     /**
