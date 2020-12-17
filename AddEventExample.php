@@ -6,9 +6,8 @@ use SKien\GCalendar\GCalAddEventLink;
 $oLink = new GCalAddEventLink();
 
 $oLink->setSubject('My first Event');
-$oLink->setStart('20x20-12-17', 'Y-m-d');
-$oLink->setAllday();
-// $oLink->setTimezone('America/New_York');
+$oLink->setStart('2020-12-24 13:00');
+$oLink->setTimezone('America/New_York');
 $oLink->setDetails(
     'We just want to meet us via zoom cause we are not allowed to ' . PHP_EOL . 
     'meet us at the christmas market :-(' . PHP_EOL . PHP_EOL .

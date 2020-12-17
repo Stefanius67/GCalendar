@@ -4,7 +4,7 @@
  ![License](https://img.shields.io/packagist/l/gomoob/php-pushwoosh.svg) 
  [![Donate](https://img.shields.io/static/v1?label=donate&message=PayPal&color=orange)](https://www.paypal.me/SKientzler/5.00EUR)
  ![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)
- [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Stefanius67/XFPDF/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/Stefanius67/XFPDF/?branch=main)
+ [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Stefanius67/GCalendar/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/Stefanius67/GCalendar/?branch=main)
  
 ----------
 ## Overview
@@ -12,14 +12,23 @@
 This class can generate the HREF value to provide a `Add to my google calendar` link to your
 page.
 
-Following Data for the event to create are supported:
+Following Data for the event to create is supported:
 - Subject
+	- `setSubject()`
 - Start Date/Time
-- End Date/Time (if not set, default duration of 30 min is used)
+	- `setStart()`
+- End Date/Time or Duration(if not set, default duration of 30 min is used)
+	-> `setEnd()` or `setDuration()`
+- Timezone (if not set, system settings used)
+	- `setTimezone()`
 - All day Event
-- Description (optional)
+	- `setTimezone()`
+- Detailed Description (optional)
+	- `setDetails()`
 - Location
+	- `setLocation()`
 - Additional Guest(s)
+	- `addGuest()`
 
 ## Usage
 1. Create an instance of the GCalAddEventLink class

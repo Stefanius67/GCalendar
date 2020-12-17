@@ -160,7 +160,7 @@ class GCalAddEventLink
      */
     public function setTimezone(string $strTimezone) : void
     {
-        if (!in_array($this->strTimezone, \DateTimeZone::listIdentifiers())) {
+        if (!in_array($strTimezone, \DateTimeZone::listIdentifiers())) {
             $this->logger->warning('Call of GCalendar::setTimezone() with invalid timezone', ['timezone' => $strTimezone]);
         } else {
             $this->strTimezone = $strTimezone;
@@ -206,7 +206,7 @@ class GCalAddEventLink
             $this->logger->warning('GCalendar: No start date/time set!');
         } else if ($this->dtEnd === null) {
             $this->dtEnd = clone $this->dtStart;
-            if (!$this->bAllday) {
+            if (!$this->bAllday && $this->dtEnd !== null) {
                 $this->dtEnd->add(new \DateInterval('PT30M'));
             }
         }
