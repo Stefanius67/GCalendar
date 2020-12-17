@@ -7,7 +7,7 @@ $oLink = new GCalAddEventLink();
 
 $oLink->setSubject('Zoom meeting at christmas day');
 $oLink->setStart('2020-12-24 13:00');
-$oLink->setDuration(new \DateInterval('PT1H')); // 1 hour
+$oLink->setDuration('PT1H'); // 1 hour
 $oLink->setTimezone('America/New_York');
 $oLink->setDetails(
     'We just want to meet us via zoom cause we are not allowed to ' . PHP_EOL . 
